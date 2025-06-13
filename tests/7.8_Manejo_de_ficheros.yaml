@@ -1,0 +1,22 @@
+file:
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - "fs.aio-max-nr = 1048576"
+      - "fs.file-max = 6815744"
+
+
+command:
+  contador_de_fs.aio-max-nr:
+    exec: >
+      bash -c "egrep '^[[:space:]]*fs.aio-max-nr([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+      
+  contador_de_fs.file-max:
+    exec: >
+      bash -c "egrep '^[[:space:]]*fs.file-max([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"

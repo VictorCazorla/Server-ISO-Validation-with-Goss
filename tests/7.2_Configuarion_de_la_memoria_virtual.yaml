@@ -1,0 +1,11 @@
+kernel-param:
+  vm.swappiness:
+    value: "10"
+  vm.dirty_background_ratio:
+    value: "3"
+  vm.dirty_ratio:
+    value: "40"
+  vm.dirty_expire_centisecs:
+    value: "500"
+  vm.dirty_writeback_centisecs:
+    value: "100"

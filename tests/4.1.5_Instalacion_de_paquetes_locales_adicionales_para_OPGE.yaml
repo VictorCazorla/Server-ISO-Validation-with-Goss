@@ -1,0 +1,5 @@
+package:
+  ncurses-libs-6.1-10.20180224.el8.x86_64:
+    installed: true
+  ncurses-libs-6.1-10.20180224.el8.i686:
+    installed: true

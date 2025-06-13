@@ -1,0 +1,116 @@
+user:
+  oracle:
+    exists: true
+    uid: 203
+    gid: 201
+    groups:
+      - dba
+      - asmdba
+      - oper
+      - backupdba
+      - dgdba
+      - kmdba
+      - racdba
+      - wheel
+    home: /home/oracle
+    shell: /bin/bash
+
+  grid:
+    exists: true
+    uid: 205
+    gid: 201
+    groups:
+      - dba
+      - asmadmin
+      - asmdba
+      - asmoper
+      - wheel
+    home: /home/grid
+    shell: /bin/bash
+
+  ericsson:
+    exists: true
+    uid: 204
+    gid: 201
+    groups:
+      - dba
+      - wheel
+    home: /home/ericsson
+    shell: /bin/bash
+
+  eriplos:
+    exists: true
+    uid: 1304
+    gid: 201
+    home: /home/eriplos
+    shell: /bin/bash
+
+  tomcat:
+    exists: true
+    uid: 1305
+    gid: 201
+    home: /home/tomcat
+    shell: /bin/bash
+
+  sgpatch:
+    exists: true
+    uid: 1306
+    gid: 201
+    home: /home/tginstall
+    shell: /bin/bash
+
+  weblogic:
+    exists: true
+    uid: 1310
+    gid: 201
+    home: /home/weblogic
+    shell: /bin/bash
+
+  tuxedo:
+    exists: true
+    uid: 1301
+    gid: 201
+    home: /home/tuxedo
+    shell: /bin/bash
+
+  ppga:
+    exists: true
+    uid: 10550
+    gid: 201
+    home: /home/ppga
+    shell: /bin/bash
+
+  ppcs:
+    exists: true
+    uid: 10551
+    gid: 201
+    home: /home/ppcs
+    shell: /bin/bash
+
+  opge:
+    exists: true
+    uid: 10552
+    gid: 201
+    home: /home/opge
+    shell: /bin/bash
+
+  rasc:
+    exists: true
+    uid: 10553
+    gid: 201
+    home: /home/rasc
+    shell: /bin/bash
+
+  ocsre:
+    exists: true
+    uid: 10510
+    gid: 201
+    home: /home/ocsre
+    shell: /bin/bash
+
+  ocsredr:
+    exists: true
+    uid: 10511
+    gid: 201
+    home: /home/ocsredr
+    shell: /bin/bash

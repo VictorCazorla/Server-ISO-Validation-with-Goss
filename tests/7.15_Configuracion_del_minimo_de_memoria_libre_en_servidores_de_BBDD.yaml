@@ -1,0 +1,17 @@
+# Verificación de la configuración vm.min_free_kbytes en /etc/sysctl.conf
+file:
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - 'vm.min_free_kbytes = 4194304'
+
+command:
+  unica_ocurrencia_min_free_kbytes:
+    exec: |
+      parametro="vm.min_free_kbytes"
+      fichero="/etc/sysctl.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"

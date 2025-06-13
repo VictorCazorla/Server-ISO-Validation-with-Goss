@@ -1,0 +1,58 @@
+command:
+  verificar_grupos_creados:
+    exec: |
+      errores=0  # Creamos una variable para llevar el control de si hay errores
+
+      echo "=== Verificando existencia y GID de grupos requeridos ==="
+
+      # Lista de grupos a comprobar con su GID esperado (en formato grupo:GID)
+      grupos=(
+        "root:0"
+        "wheel:10"
+        "dba:200"
+        "oinstall:201"
+        "asmadmin:202"
+        "asmdba:203"
+        "asmoper:204"
+        "oper:205"
+        "backupdba:206"
+        "dgdba:207"
+        "kmdba:208"
+        "racdba:5433"
+      )
+
+      # Recorremos cada grupo de la lista
+      for item in "${grupos[@]}"; do
+        grupo=$(echo "$item" | cut -d: -f1)        # Nombre del grupo
+        gid_esperado=$(echo "$item" | cut -d: -f2) # GID
+
+        # Verificamos si el grupo existe usando getent
+        if getent group "$grupo" > /dev/null; then
+          gid_actual=$(getent group "$grupo" | cut -d: -f3)  # Obtenemos el GID 
+
+          # Comparamos el GID con el esperado
+          if [ "$gid_actual" != "$gid_esperado" ]; then
+            echo "ERROR: Grupo $grupo tiene GID $gid_actual (esperado: $gid_esperado)"
+            errores=1  # Marcamos error si el GID no coincide
+          else
+            echo "OK: Grupo $grupo con GID correcto ($gid_actual)"
+          fi
+        else
+          echo "ERROR: Grupo $grupo no existe"  # Si el grupo no está creado, también es error
+          errores=1
+        fi
+      done
+
+      # Al final comprobamos si hubo algún error. Si no, todo está OK.
+      if [ "$errores" -eq 0 ]; then
+        echo "OK"
+        exit 0
+      else
+        echo "Uno o más grupos no cumplen los requisitos."
+        exit 1
+      fi
+
+    exit-status: 0  # Este test solo pasa si no hubo errores y el script terminó correctamente
+
+    stdout:
+      - "OK"  # Además debe aparecer al menos una línea con "OK" para que Goss lo valide

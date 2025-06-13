@@ -1,0 +1,23 @@
+command:
+  comprobar_arranque:
+    exec: |
+      # Guardamos el modo de arranque actual del sistema (por ejemplo: graphical.target o multi-user.target)
+      target=$(systemctl get-default)
+
+      # Comprobamos si el hostname del sistema contiene 'EG' o 'TG'
+      # Si es así, el arranque debería estar en modo gráfico
+      if hostname | grep -Eq 'EG|TG'; then
+        # Si el target es gráfico, mostramos OK. Si no, mostramos INCORRECTO
+        [ "$target" = "graphical.target" ] && echo OK || echo INCORRECTO
+      else
+        # Si no es EG ni TG, el arranque debe estar en modo consola (multi-user.target)
+        [ "$target" = "multi-user.target" ] && echo OK || echo INCORRECTO
+      fi
+
+    # El test pasará solo si el script termina correctamente
+    exit-status: 0
+
+    # Además, debe imprimir "OK" en pantalla para que Goss lo considere válido
+    stdout:
+      - "OK"
+    # Si el test falla, se imprimirá "INCORRECTO" en pantalla

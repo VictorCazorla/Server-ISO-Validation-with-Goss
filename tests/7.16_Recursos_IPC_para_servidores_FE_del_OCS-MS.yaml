@@ -1,0 +1,9 @@
+kernel-param:
+    kernel.msgmax:
+        value: "300032"
+    kernel.msgmnb:
+        value: "2097152"
+    kernel.msgmni:
+        value: "32768"
+    kernel.sem:
+        value: "4096\t32000\t4096\t4096"

@@ -1,0 +1,13 @@
+command:
+    cat /etc/redhat-release:
+        exit-status: 0
+        stdout:
+            - Red Hat Enterprise Linux release 8.10 (Ootpa)
+        stderr: ""
+        timeout: 10000
+    uname -a | grep -o "OCSRE-BELS ":
+        exit-status: 0
+        stdout:
+            - OCSRE-BELS
+        stderr: ""
+        timeout: 10000

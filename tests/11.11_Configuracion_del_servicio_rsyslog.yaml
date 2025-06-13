@@ -1,0 +1,16 @@
+file:
+    /etc/rsyslog.d/10-systemd-logind.conf:
+        exists: true
+        contents: []
+    /etc/rsyslog.d/ignore-systemd-session-slice.conf:
+        exists: true
+        contents: []
+    /var/log/systemd-logind.log:
+        exists: true
+        contents: []
+command:
+    cat /etc/logrotate.d/syslog | grep "/var/log/systemd-logind.log":
+        exit-status: 0
+        stdout: "/var/log/systemd-logind.log\n"
+        stderr: ""
+        timeout: 10000

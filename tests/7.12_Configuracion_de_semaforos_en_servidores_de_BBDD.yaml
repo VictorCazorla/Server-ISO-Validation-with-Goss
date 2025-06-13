@@ -1,0 +1,17 @@
+# Verificación de parámetros de kernel relacionados con semáforos en /etc/sysctl.conf
+file:
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - 'kernel.sem = 4096 32000 4096 4096'
+
+command:
+  unica_ocurrencia_kernel_sem:
+    exec: |
+      parametro="kernel.sem"
+      fichero="/etc/sysctl.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"

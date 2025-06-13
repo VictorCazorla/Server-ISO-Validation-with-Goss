@@ -1,0 +1,14 @@
+file:
+  /etc/security/limits.conf:
+    exists: true
+    contains:
+      - 'ppga soft core 2097152'
+      - 'ppga hard core unlimited'
+      - 'opge soft core 2097152'
+      - 'opge hard core unlimited'
+      - 'ppcs soft core 2097152'
+      - 'ppcs hard core unlimited'
+      - 'rasc soft core 2097152'
+      - 'rasc hard core unlimited'
+      - 'tuxedo hard core unlimited'
+      - 'tuxedo soft core 2097152'

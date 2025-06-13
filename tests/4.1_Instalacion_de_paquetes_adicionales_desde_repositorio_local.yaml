@@ -1,0 +1,139 @@
+package:
+  libpng-1.6.34-5.el8.i686:
+    installed: true
+  valgrind-scripts-3.22.0-3.el8_10.i686:
+    installed: true
+  libpng-devel-1.6.34-5.el8.i686:
+    installed: true
+  libxml2-2.9.7-19.el8_10.i686:
+    installed: true
+  tigervnc-1.15.0-1.el8_10.x86_64:
+    installed: true
+  libaio-0.3.112-1.el8.i686:
+    installed: true
+  valgrind-scripts-3.22.0-3.el8_10.x86_64:
+    installed: true
+  libxml2-devel-2.9.7-19.el8_10.x86_64:
+    installed: true
+  libstdc++-devel-8.5.0-26.el8_10.i686:
+    installed: true
+  tigervnc-license-1.13.1-8.el8.noarch:
+    installed: true
+  libaio-devel-0.3.112-1.el8.i686:
+    installed: true
+  tmux-2.7-3.el8.x86_64:
+    installed: true
+  compat-hwloc1-2.2.0-3.el8.x86_64:
+    installed: true
+  libpng15-1.5.30-7.el8.x86_64:
+    installed: true
+  omping-0.0.4-18.el8.x86_64:
+    installed: true
+  xterm-resize-331-2.el8.x86_64:
+    installed: true
+  valgrind-devel-3.22.0-3.el8_10.i686:
+    installed: true
+  libXrender-devel-0.9.10-7.el8.i686:
+    installed: true
+  glibc-devel-2.28-251.el8_10.16.i686:
+    installed: true
+  vinagre-3.22.0-24.el8_10.x86_64:
+    installed: true
+  compat-openssl10-1.0.2o-4.el8_10.1.i686:
+    installed: true
+  libaio-devel-0.3.112-1.el8.x86_64:
+    installed: true
+  compat-libtiff3-3.9.4-13.el8.x86_64:
+    installed: true
+  authselect-compat-1.2.6-2.el8.x86_64:
+    installed: true
+  xterm-331-2.el8.x86_64:
+    installed: true
+  valgrind-gdb-3.22.0-3.el8_10.x86_64:
+    installed: true
+  valgrind-gdb-3.22.0-3.el8_10.i686:
+    installed: true
+  tigervnc-icons-1.13.1-8.el8.noarch:
+    installed: true
+  libsmi-0.4.8-23.el8.x86_64:
+    installed: true
+  python3-requests-ftp-0.3.1-11.el8.noarch:
+    installed: true
+  libXrender-devel-0.9.10-7.el8.x86_64:
+    installed: true
+  ncurses-compat-libs-6.1-10.20180224.el8.x86_64:
+    installed: true
+  valgrind-docs-3.22.0-3.el8_10.i686:
+    installed: true
+  valgrind-3.22.0-3.el8_10.i686:
+    installed: true
+  net-snmp-libs-5.8-30.el8.x86_64:
+    installed: true
+  gcc-toolset-13-libstdc++-devel-13.2.1-6.2.el8.x86_64:
+    installed: true
+  libpng-devel-1.6.34-5.el8.x86_64:
+    installed: true
+  compat-hwloc1-2.2.0-3.el8.i686:
+    installed: true
+  libpng15-1.5.30-7.el8.i686:
+    installed: true
+  valgrind-docs-3.22.0-3.el8_10.x86_64:
+    installed: true
+  glibc-devel-2.28-251.el8_10.16.x86_64:
+    installed: true
+  python3-libxml2-2.9.7-19.el8_10.x86_64:
+    installed: true
+  polkit-devel-0.115-15.el8_10.2.x86_64:
+    installed: true
+  libxml2-devel-2.9.7-19.el8_10.i686:
+    installed: true
+  compat-libpthread-nonshared-2.28-251.el8_10.16.x86_64:
+    installed: true
+  compat-exiv2-026-0.26-7.el8.x86_64:
+    installed: true
+  compat-libtiff3-3.9.4-13.el8.i686:
+    installed: true
+  net-snmp-libs-5.8-30.el8.i686:
+    installed: true
+  valgrind-3.22.0-3.el8_10.x86_64:
+    installed: true
+  libstdc++-8.5.0-26.el8_10.i686:
+    installed: true
+  libsmi-0.4.8-23.el8.i686:
+    installed: true
+  libxml2-2.9.7-19.el8_10.x86_64:
+    installed: true
+  compat-libgfortran-48-4.8.5-36.1.el8.x86_64:
+    installed: true
+  libpng12-1.2.57-5.el8.i686:
+    installed: true
+  valgrind-devel-3.22.0-3.el8_10.x86_64:
+    installed: true
+  libpng12-1.2.57-5.el8.x86_64:
+    installed: true
+  polkit-devel-0.115-15.el8_10.2.i686:
+    installed: true
+  libstdc++-docs-8.5.0-26.el8_10.x86_64:
+    installed: true
+  compat-exiv2-026-0.26-7.el8.i686:
+    installed: true
+  polkit-pkla-compat-0.1-12.el8.x86_64:
+    installed: true
+  sendmail-8.15.2-34.el8.x86_64:
+    installed: true
+  libaio-0.3.112-1.el8.x86_64:
+    installed: true
+  ftp-0.17-78.el8.x86_64:
+    installed: true
+  libstdc++-devel-8.5.0-26.el8_10.x86_64:
+    installed: true
+  compat-openssl10-1.0.2o-4.el8_10.1.x86_64:
+    installed: true
+  compat-libgfortran-48-4.8.5-36.1.el8.i686:
+    installed: true
+  pcp-pmda-sendmail-5.3.7-22.el8_10.x86_64:
+    installed: true
+  libpng-1.6.34-5.el8.x86_64:
+    installed: true
+  libstdc++-8.5.0-26.el8_10.x86_64:
+    installed: true

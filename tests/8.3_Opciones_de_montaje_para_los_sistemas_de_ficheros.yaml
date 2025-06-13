@@ -1,0 +1,54 @@
+command:
+  verificar_fstab_backup_fsck:
+    exec: |
+      errores=0  # Inicializamos una variable para contar si hay errores
+
+      # Recorremos cada línea del fichero /etc/fstab
+      while read -r linea; do
+        # Saltamos líneas vacías o comentarios (empiezan con #)
+        echo "$linea" | grep -Eq '^\s*#|^\s*$' && continue
+
+        # Extraemos el tipo de sistema de archivos (campo 3)
+        tipo=$(echo "$linea" | awk '{print $3}')
+        # Solo analizamos líneas con tipo ext4
+        [ "$tipo" != "ext4" ] && continue
+
+        # Obtenemos el punto de montaje (campo 2), el valor de backup (campo 5) y el valor de fsck (campo 6)
+        punto=$(echo "$linea" | awk '{print $2}')
+        backup=$(echo "$linea" | awk '{print $5}')
+        fsck=$(echo "$linea" | awk '{print $6}')
+
+        # Por defecto asumimos que el caso es "otro"
+        caso="otro"
+
+        # Según el punto de montaje, establecemos los valores esperados de backup y fsck
+        case "$punto" in
+          "/" ) expected_b=1; expected_f=1 ;;                             # Raíz del sistema
+          "/boot"|"/home"|"/softw/app"|"/var"|"/var/log" )
+              expected_b=1; expected_f=2 ;;                               # Directorios importantes
+          "/tmp"|"/var/tmp"|"/var/log/audit" )
+              expected_b=0; expected_f=2 ;;                               # Directorios temporales o de logs especiales
+          "/boot/efi" )
+              expected_b=0; expected_f=2 ;;                               # Partición EFI
+          "/dev/shm"|"/dev/pts"|"/sys"|"/proc"|"/swap" )
+              expected_b=0; expected_f=0 ;;                               # Pseudo sistemas de archivos o swap
+          * )
+              expected_b=0; expected_f=2 ;;                               # Cualquier otro punto de montaje
+        esac
+
+        # Verificamos si los valores actuales coinciden con los esperados
+        if [ "$backup" != "$expected_b" ] || [ "$fsck" != "$expected_f" ]; then
+          # Si alguno no coincide, mostramos error y marcamos que hay errores
+          echo "ERROR: $punto → Backup=$backup (esperado $expected_b), Fsck=$fsck (esperado $expected_f)"
+          errores=1
+        else
+          # Si todo está bien, lo mostramos como OK
+          echo "OK: $punto → Backup=$backup, Fsck=$fsck"
+        fi
+      done < /etc/fstab  # Leemos línea por línea del archivo fstab
+
+      # Si no hubo errores, mostramos OK; si no, salimos con error
+      [ "$errores" -eq 0 ] && echo "OK" || exit 1
+    exit-status: 0 
+    stdout:
+      - "OK"  # Además debe haber al menos una línea que contenga "OK"

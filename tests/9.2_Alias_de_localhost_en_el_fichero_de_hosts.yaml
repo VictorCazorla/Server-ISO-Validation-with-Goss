@@ -1,0 +1,18 @@
+file:
+  /etc/hosts:
+    exists: true
+    contains:
+      - "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 loghost."
+
+command:
+  verificar_primera_linea_hosts:
+    exec: "awk '!/^#/ && NF {print; exit}' /etc/hosts"
+    exit-status: 0
+    stdout:
+      - "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 loghost."
+
+  verificar_sin_duplicados_hosts:
+    exec: "grep '^127.0.0.1' /etc/hosts | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"

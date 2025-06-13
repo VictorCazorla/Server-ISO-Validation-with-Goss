@@ -1,0 +1,113 @@
+# Verificación de parámetros específicos en el archivo /etc/default/grub
+# Cada comando valida que el parámetro aparezca exactamente una vez (o dos veces para "console")
+
+file:
+  /etc/default/grub:
+    exists: true
+    contains:
+      - 'pcie_aspm.policy=performance'
+      - 'ipv6.disable=1'
+      - 'transparent_hugepage=never'
+      - 'console=tty1'
+      - 'console=ttyS0,115200'
+      - 'processor.max_cstate=1'
+      - 'intel_idle.max_cstate=0'
+      - 'mce=ignore_ce'
+
+command:
+  unica_ocurrencia_pcie_aspm:
+    exec: |
+      parametro="pcie_aspm.policy"
+      fichero="/etc/default/grub"
+      ocurrencias=$(egrep -c "[[:space:]]${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_ipv6_disable:
+    exec: |
+      parametro="ipv6.disable"
+      fichero="/etc/default/grub"
+      ocurrencias=$(egrep -c "[[:space:]]${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_transparent_hugepage:
+    exec: |
+      parametro="transparent_hugepage"
+      fichero="/etc/default/grub"
+      ocurrencias=$(egrep -c "[[:space:]]${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_processor_max_cstate:
+    exec: |
+      parametro="processor.max_cstate"
+      fichero="/etc/default/grub"
+      ocurrencias=$(egrep -c "[[:space:]]${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_intel_idle_max_cstate:
+    exec: |
+      parametro="intel_idle.max_cstate"
+      fichero="/etc/default/grub"
+      ocurrencias=$(egrep -c "[[:space:]]${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_mce:
+    exec: |
+      parametro="mce"
+      fichero="/etc/default/grub"
+      ocurrencias=$(egrep -c "[[:space:]]${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  dos_ocurrencias_console:
+    exec: |
+      parametro="console=tty"
+      fichero="/etc/default/grub"
+      ocurrencias=$(egrep -o "${parametro}[^[:space:]\"']*" "$fichero" | wc -l)
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "2"
+
+  no_rhgb_quiet:
+    exec: |
+      grep '^GRUB_CMDLINE_LINUX=' /etc/default/grub | grep -vq 'rhgb\|quiet'
+    exit-status: 0
+
+  parametros_en_kernel:
+    exec: cat /proc/cmdline
+    exit-status: 0
+    stdout:
+      - 'pcie_aspm.policy=performance'
+      - 'ipv6.disable=1'
+      - 'transparent_hugepage=never'
+      - 'console=tty1'
+      - 'console=ttyS0,115200'
+      - 'processor.max_cstate=1'
+      - 'intel_idle.max_cstate=0'
+      - 'mce=ignore_ce'
+
+  no_idle_poll_en_virtual:
+    exec: |
+      if grep -q "^flags.*hypervisor" /proc/cpuinfo; then
+        grep -qv "idle=poll" /proc/cmdline
+      else
+        true
+      fi
+    exit-status: 0

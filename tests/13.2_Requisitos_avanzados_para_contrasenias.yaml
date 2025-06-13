@@ -1,0 +1,117 @@
+# Validación del archivo /etc/security/pwquality.conf para parámetros de configuración de calidad de contraseña
+
+file:
+  /etc/security/pwquality.conf:
+    exists: true
+    contains:
+      - "difok = 3"
+      - "minlen = 11"
+      - "dcredit = -2"
+      - "ucredit = -1"
+      - "lcredit = -1"
+      - "ocredit = -2"
+      - "minclass = 4"
+      - "dictcheck = 1"
+      - "usercheck = 1"
+      - "retry = 3"
+
+command:
+  unica_ocurrencia_difok:
+    exec: |
+      parametro="difok"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_minlen:
+    exec: |
+      parametro="minlen"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_dcredit:
+    exec: |
+      parametro="dcredit"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_ucredit:
+    exec: |
+      parametro="ucredit"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_lcredit:
+    exec: |
+      parametro="lcredit"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_ocredit:
+    exec: |
+      parametro="ocredit"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_minclass:
+    exec: |
+      parametro="minclass"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_dictcheck:
+    exec: |
+      parametro="dictcheck"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_usercheck:
+    exec: |
+      parametro="usercheck"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_retry:
+    exec: |
+      parametro="retry"
+      fichero="/etc/security/pwquality.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"

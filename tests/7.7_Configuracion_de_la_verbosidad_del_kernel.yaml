@@ -1,0 +1,5 @@
+
+kernel-param:
+    kernel.printk:
+        value: "3\t4\t1\t7"
+

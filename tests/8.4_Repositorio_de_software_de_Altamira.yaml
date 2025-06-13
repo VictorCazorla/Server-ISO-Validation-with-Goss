@@ -1,0 +1,9 @@
+# Verificación del directorio /softw/app/3ppsw con permisos y propietario correctos
+
+file:
+  /softw/app/3ppsw:
+    exists: true
+    filetype: directory
+    owner: root
+    group: "201"
+    mode: "0775"

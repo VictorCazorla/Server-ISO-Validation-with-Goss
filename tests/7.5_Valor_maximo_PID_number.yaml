@@ -1,0 +1,5 @@
+
+kernel-param:
+    kernel.pid_max:
+        value: "999999"
+

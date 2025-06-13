@@ -1,0 +1,34 @@
+file:
+  /etc/chrony.conf:
+    exists: true
+    mode: "0644"
+    contains:
+      - "^server [0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+"
+      - "^log measurements statistics tracking"
+
+  /etc/sysconfig/chronyd:
+    exists: true
+    contains:
+      - 'OPTIONS="-4"'
+
+service:
+  chronyd:
+    enabled: true
+    running: true
+
+command:
+  chronyc_sources:
+    exec: "chronyc sources"
+    exit-status: 0
+    stdout:
+      - '\\*\\s+[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+'
+
+  chronyc_tracking:
+    exec: "chronyc tracking"
+    exit-status: 0
+    stdout:
+      - "Reference ID"
+
+package:
+  chrony:
+    installed: true

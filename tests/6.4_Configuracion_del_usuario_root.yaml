@@ -1,0 +1,7 @@
+command:
+    usermod -s /bin/bash root:
+        exit-status: 0
+        stdout: ""
+        stderr:
+            - 'usermod: sin cambios'
+        timeout: 10000

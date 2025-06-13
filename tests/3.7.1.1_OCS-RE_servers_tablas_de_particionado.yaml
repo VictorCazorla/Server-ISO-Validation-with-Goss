@@ -1,0 +1,56 @@
+command:
+    df -h --output=size,target,fstype | grep "/ " | xargs:
+        exit-status: 0
+        stdout: "20G / ext4\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/boot " | xargs:
+        exit-status: 0
+        stdout: "1G /boot ext4\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/home " | xargs:
+        exit-status: 0
+        stdout: "165G /home ext4\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/softw/app " | xargs:
+        exit-status: 0
+        stdout: "100G /softw/app ext4\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/tmp " | xargs:
+        exit-status: 0
+        stdout: "5G /tmp ext4\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/var " | xargs:
+        exit-status: 0
+        stdout: "16G /var ext4\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/var/log/audit " | xargs:
+        exit-status: 0
+        stdout: "10G /var/log/audit ext4\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "swap " | xargs:
+        exit-status: 0
+        stdout: "16G swap swap\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/boot/efi " | xargs:
+        exit-status: 0
+        stdout: "600M /boot/efi EFI System Partition\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/var/log " | xargs:
+        exit-status: 0
+        stdout: "8G /var/log ext4\n"
+        stderr: ""
+        timeout: 10000
+    df -h --output=size,target,fstype | grep "/var/tmp " | xargs:
+        exit-status: 0
+        stdout: "4G /var/tmp ext4\n"
+        stderr: ""
+        timeout: 10000

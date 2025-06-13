@@ -1,0 +1,13 @@
+file:
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - "kernel.sysrq = 1"
+
+command:
+  contador_de_kernel.sysrq:
+    exec: >
+      bash -c "egrep '^[[:space:]]*kernel.sysrq([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"

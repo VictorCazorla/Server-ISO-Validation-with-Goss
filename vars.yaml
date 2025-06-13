@@ -1,0 +1,7 @@
+# Modos de test disponibles
+modo: ocsms-fe
+#modo: ocsms-few
+#modo: ocsme-bebd
+#modo: ocsre-bels
+#modo: ocsre-fed
+#modo: ocsre_bebd

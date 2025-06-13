@@ -1,0 +1,12 @@
+file:
+  /etc/security/limits.conf:
+    exists: true
+    contains:
+      - '@oinstall soft nofile 192152'
+      - '@oinstall hard nofile 385304'
+      - '@oinstall soft nproc 32768'
+      - '@oinstall hard nproc 32768'
+      - '@oinstall soft memlock 3614288'
+      - '@oinstall hard memlock 3614288'
+      - '@oinstall soft stack 10240'
+      - '@oinstall hard stack 32768'

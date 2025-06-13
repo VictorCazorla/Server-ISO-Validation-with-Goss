@@ -1,0 +1,43 @@
+service:
+  abrt-ccpp:
+    enabled: false
+    running: false
+  abrtd:
+    enabled: false
+    running: false
+  atd:
+    enabled: false
+    running: false
+  auditd:
+    enabled: false
+    running: false
+  fcoe:
+    enabled: false
+    running: false
+  firewalld:
+    enabled: false
+    running: false
+  iscsi:
+    enabled: false
+    running: false
+  iscsid:
+    enabled: false
+    running: false
+  iscsid.socket:
+    enabled: false
+    running: false
+  kdump:
+    enabled: false
+    running: false
+  pmcd:
+    enabled: false
+    running: false
+  pmie:
+    enabled: false
+    running: false
+  pmlogger:
+    enabled: false
+    running: false
+  rhsmcertd:
+    enabled: false
+    running: false

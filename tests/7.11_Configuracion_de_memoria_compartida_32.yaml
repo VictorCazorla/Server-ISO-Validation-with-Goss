@@ -1,0 +1,9 @@
+command:
+  getconf PAGESIZE:
+    exit-status: 0
+    stdout:
+      - "4096"
+
+kernel-param:
+  kernel.shmmni:
+    value: 4096

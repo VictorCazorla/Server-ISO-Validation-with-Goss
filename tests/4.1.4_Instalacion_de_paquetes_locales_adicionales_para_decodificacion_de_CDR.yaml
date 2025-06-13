@@ -1,0 +1,10 @@
+package:
+  libtirpc-devel-1.1.4-12.el8_10.x86_64:
+    installed: true
+  libtirpc-1.1.4-12.el8_10.x86_64:
+    installed: true
+  libtirpc-devel-1.1.4-12.el8_10.i686:
+    installed: true
+  libtirpc-1.1.4-12.el8_10.i686:
+    installed: true
+    

@@ -1,0 +1,125 @@
+# Validación del archivo /home/oracle/.profile para variables de entorno y alias Oracle
+
+file:
+  /home/oracle/.profile:
+    exists: true
+    owner: oracle
+    mode: "0644"
+    contains:
+      - 'set -o emacs'
+      - '# ForOracle 19c environment.'
+      - 'export ORACLE_BASE=/softw/app/oracle'
+      - 'export ORACLE_HOME=/softw/app/oracle/19c/dbhome'
+      - 'export NLS_LANG=spanish_spain.WE8ISO8859P9'
+      - "alias svrmgrl='sqlplus \"/ as sysdba\"'"
+      - 'export CRS_HOME=/softw/app/oracle/19c/grid'
+      - 'export GRID_HOME=/softw/app/oracle/19c/grid'
+      - 'export ORA_CRS_HOME=/softw/app/oracle/19c/grid'
+      - 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORA_CRS_HOME/lib'
+      - 'export LD_LIBRARY_PATH=$CRS_HOME/lib:$CRS_HOME/lib32:$ORACLE_HOME/lib:$ORACLE_HOME/lib32:$LD_LIBRARY_PATH'
+      - 'export PATH=$CRS_HOME/bin:$CRS_HOME/sbin:$ORACLE_HOME/bin:$ORACLE_HOME/sbin:/bin:/sbin:$ORACLE_HOME/OPatch:$PATH'
+      - 'export TMP=/tmp'
+      - 'export TMPDIR=/tmp'
+      - "alias ll='ls -lrta'"
+
+command:
+  unica_ocurrencia_oracle_base:
+    exec: |
+      parametro="ORACLE_BASE"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*export[[:space:]]+${parametro}=[^[:space:]]+" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_oracle_home:
+    exec: |
+      parametro="ORACLE_HOME"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*export[[:space:]]+${parametro}=[^[:space:]]+" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_nls_lang:
+    exec: |
+      parametro="NLS_LANG"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*export[[:space:]]+${parametro}=[^[:space:]]+" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_crs_home:
+    exec: |
+      parametro="CRS_HOME"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*export[[:space:]]+${parametro}=[^[:space:]]+" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_grid_home:
+    exec: |
+      parametro="GRID_HOME"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*export[[:space:]]+${parametro}=[^[:space:]]+" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_ora_crs_home:
+    exec: |
+      parametro="ORA_CRS_HOME"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*export[[:space:]]+${parametro}=[^[:space:]]+" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_tmp:
+    exec: |
+      parametro="TMP"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*export[[:space:]]+${parametro}=[^[:space:]]+" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_tmpdir:
+    exec: |
+      parametro="TMPDIR"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*export[[:space:]]+${parametro}=[^[:space:]]+" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_alias_svrmgrl:
+    exec: |
+      parametro="alias svrmgrl='sqlplus \"/ as sysdba\"'"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_alias_ll:
+    exec: |
+      parametro="alias ll='ls -lrta'"
+      fichero="/home/oracle/.profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+

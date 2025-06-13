@@ -1,0 +1,262 @@
+file:
+  /etc/login.defs:
+    exists: true
+    contents:
+      - '/^PASS_MAX_DAYS\s+60$/'
+      - '/^PASS_MIN_DAYS\s+8$/'
+      - '/^PASS_MIN_LEN\s+8$/'
+      - '/^PASS_WARN_AGE\s+15$/'
+
+command:
+  # ORACLE
+  chage_oracle_min_days:
+    exec: "LC_ALL=C chage -l oracle | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+  chage_oracle_max_days:
+    exec: "LC_ALL=C chage -l oracle | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_oracle_warn_age:
+    exec: "LC_ALL=C chage -l oracle | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # GRID
+  chage_grid_min_days:
+    exec: "LC_ALL=C chage -l grid | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+  chage_grid_max_days:
+    exec: "LC_ALL=C chage -l grid | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+  chage_grid_warn_age:
+    exec: "LC_ALL=C chage -l grid | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # ERICSSON
+  chage_ericsson_min_days:
+    exec: "LC_ALL=C chage -l ericsson | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+  chage_ericsson_max_days:
+    exec: "LC_ALL=C chage -l ericsson | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_ericsson_warn_age:
+    exec: "LC_ALL=C chage -l ericsson | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # ERIPLOS
+  chage_eriplos_min_days:
+    exec: "LC_ALL=C chage -l eriplos | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+  chage_eriplos_max_days:
+    exec: "LC_ALL=C chage -l eriplos | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_eriplos_warn_ages:
+    exec: "LC_ALL=C chage -l eriplos | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # SGPATCH
+  chage_sgpatch_min_days:
+    exec: "LC_ALL=C chage -l sgpatch | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_sgpatch_max_days:
+    exec: "LC_ALL=C chage -l sgpatch | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_sgpatch_warn_age:
+    exec: "LC_ALL=C chage -l sgpatch | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+{{ if eq .Vars.modo "ocsms-few" }}
+  # WEBLOGIC (solo para OCSME-FEW)
+  chage_weblogic_min_days:
+    exec: "LC_ALL=C chage -l weblogic | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_weblogic_max_days:
+    exec: "LC_ALL=C chage -l weblogic | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_weblogic_warn_ages:
+    exec: "LC_ALL=C chage -l weblogic | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+{{ end }}
+
+{{ if eq .Vars.modo "ocsms-fe" }}
+
+  # TOMCAT (solo para OCSME-FE)
+  chage_tomcat_min_days:
+    exec: "LC_ALL=C chage -l tomcat | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_tomcat_max_days:
+    exec: "LC_ALL=C chage -l tomcat | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_tomcat_warn_ages:
+    exec: "LC_ALL=C chage -l tomcat | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # TUXEDO (solo para OCSME-FE)
+  chage_tuxedo_min_days:
+    exec: "LC_ALL=C chage -l tuxedo | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_tuxedo_max_days:
+    exec: "LC_ALL=C chage -l tuxedo | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_tuxedo_warn_ages:
+    exec: "LC_ALL=C chage -l tuxedo | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # PPGA (solo para OCSME-FE)
+  chage_ppga_min_days:
+    exec: "LC_ALL=C chage -l ppga | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_ppga_max_days:
+    exec: "LC_ALL=C chage -l ppga | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_ppga_warn_ages:
+    exec: "LC_ALL=C chage -l ppga | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # OPGE (solo para OCSME-FE)
+  chage_opge_min_days:
+    exec: "LC_ALL=C chage -l opge | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_opge_max_days:
+    exec: "LC_ALL=C chage -l opge | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+      - "60"
+
+  chage_opge_warn_ages:
+    exec: "LC_ALL=C chage -l opge | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # RASC (solo para OCSME-FE)
+  chage_rasc_min_days:
+    exec: "LC_ALL=C chage -l rasc | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_rasc_max_days:
+    exec: "LC_ALL=C chage -l rasc | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_rasc_warn_ages:
+    exec: "LC_ALL=C chage -l rasc | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+{{ end }}
+
+{{ if or (eq .Vars.modo "ocsre_bebd") (eq .Vars.modo "ocsre-fed") (eq .Vars.modo "ocsre-bels") }}
+
+  # OCSRE (solo para OCSME-FE,OCSME-BEBD,OCSRE-BELS,OCSRE-FED,OCSRE-BEBD)
+  chage_ocsre_min_days:
+    exec: "LC_ALL=C chage -l ocsre | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_ocsre_max_days:
+    exec: "LC_ALL=C chage -l ocsre | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_ocsre_warn_ages:
+    exec: "LC_ALL=C chage -l ocsre | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+  # OCSREDR (solo para OCSME-FE,OCSME-BEBD,OCSRE-BELS,OCSRE-FED,OCSRE-BEBD)
+  chage_ocsredr_min_days:
+    exec: "LC_ALL=C chage -l ocsredr | grep 'Minimum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "8"
+
+  chage_ocsredr_max_days:
+    exec: "LC_ALL=C chage -l ocsredr | grep 'Maximum' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "60"
+
+  chage_ocsredr_warn_ages:
+    exec: "LC_ALL=C chage -l ocsredr | grep 'Number' | awk 'BEGIN {FS=\":\"} {print $2}' | tr -d ' '"
+    exit-status: 0
+    stdout:
+     - "15"
+
+{{ end }}
+
+

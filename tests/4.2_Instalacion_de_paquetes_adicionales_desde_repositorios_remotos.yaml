@@ -1,0 +1,7 @@
+package:
+  tzdata-java-2025b-1.el8.noarch:
+    installed: true
+  tzdata-2025b-1.el8.noarch:
+    installed: true
+  sharutils-4.15.2-11.el8.x86_64:
+    installed: true

@@ -1,0 +1,27 @@
+file:
+  /etc/auto.master:
+    exists: true
+    contains:
+      - "/share	/etc/auto.misc --timeout=60"
+  /etc/auto.misc:
+    exists: true
+    contains:
+      - "sw	-ro,soft	<hostname_server_tg/eg>:/softw/install/swcomercial"
+      - "sys	-ro,soft	<hostname_server_tg/eg>:/softw/install/scripts"
+      - "install	-rw,soft	<hostname_server_tg/eg>:/softw/install/swrep/<COUNTRY>" # En la ISO: <hostname_server_tg/eg>:/softw/install/swrep/<PAIS*> 
+
+service:
+  autofs:
+    enabled: true
+    running: true
+
+
+
+command:
+  contador_de_timeout:
+    exec: >
+        bash -c "grep -P '^/share\t/etc/auto\.misc --timeout' /etc/auto.master | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+      

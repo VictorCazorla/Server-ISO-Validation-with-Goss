@@ -1,0 +1,5 @@
+file:
+  /etc/pam.d/su:
+   exists: true
+   contains:
+     - "auth		required	pam_wheel.so use_uid"

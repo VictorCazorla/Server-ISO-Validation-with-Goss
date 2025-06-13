@@ -1,0 +1,13 @@
+file:
+  /etc/exports:
+    exists: true
+    contains:  
+      - "/softw/install/swcomercial <nombre_host_1>(ro <nombre_host_2>(ro)" 
+      - "/softw/install/swrep/<PAIS> <nombre_host_1>(rw <nombre_host_2>(rw)" 
+      - "/softw/install/scripts <nombre_host_1>(ro) <nombre_host_2>(ro)" 
+
+# Así es como aparece en la ISO OCSME_FE, en las demás el archivo "exports" está vacio
+# /softw/install/swcomercial <nombre_host_1>(ro) <nombre_host_2>(ro)
+# /softw/install/swrep/<PAIS1><nombre_host_1>(rw) <nombre_host_2>(rw)
+# /softw/install/swrep/<PAIS2><nombre_host_1>(rw) <nombre_host_2>(rw)
+# /softw/install/scripts <nombre_host_1>(ro) <nombre_host_2>(ro)

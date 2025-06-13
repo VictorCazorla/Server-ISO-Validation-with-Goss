@@ -1,0 +1,90 @@
+# Este archivo determina el tipo de servidor y verifica los servicios correspondientes
+command:
+  # Comando para determinar el tipo de servidor
+  # Nota: Debes reemplazar este comando con tu método real para detectar el tipo de servidor
+  # Este es solo un ejemplo que busca patrones en el hostname
+  "determine-server-type":
+    # Este comando devuelve "EG_TG", "BEBD", "FEW" o "OTHER" según el tipo de servidor
+    exec: |
+      if hostname | grep -qE '(EG|TG)'; then
+        echo "EG_TG"
+      elif hostname | grep -q 'BEBD'; then
+        echo "BEBD"
+      elif hostname | grep -q 'FEW'; then
+        echo "FEW"
+      else
+        echo "OTHER"
+      fi
+    exit-status: 0
+
+  # Verificación de chronyd (debe estar activo en todos los servidores)
+  "check-chronyd-enabled":
+    exec: "systemctl is-enabled chronyd || exit 1"
+    exit-status: 0
+  "check-chronyd-running":
+    exec: "systemctl is-active chronyd || exit 1"
+    exit-status: 0
+
+  # Verificación de nfs-server (debe estar activo en todos los servidores)
+  "check-nfs-server-enabled":
+    exec: "systemctl is-enabled nfs-server || exit 1"
+    exit-status: 0
+  "check-nfs-server-running":
+    exec: "systemctl is-active nfs-server || exit 1"
+    exit-status: 0
+
+  # Verificación de autofs (debe estar activo en todos los servidores)
+  "check-autofs-enabled":
+    exec: "systemctl is-enabled autofs || exit 1"
+    exit-status: 0
+  "check-autofs-running":
+    exec: "systemctl is-active autofs || exit 1"
+    exit-status: 0
+
+  # Verificación de snmpd (debe estar activo en todos los servidores)
+  "check-snmpd-enabled":
+    exec: "systemctl is-enabled snmpd || exit 1"
+    exit-status: 0
+  "check-snmpd-running":
+    exec: "systemctl is-active snmpd || exit 1"
+    exit-status: 0
+
+  # Verificación de httpd (solo debe estar activo en servidores FEW)
+  "check-httpd-status":
+    exec: |
+      SERVER_TYPE=$(hostname | grep -qE 'FEW' && echo "FEW" || echo "OTHER")
+      if [ "$SERVER_TYPE" = "FEW" ]; then
+        # En servidores FEW, httpd debe estar activo
+        systemctl is-enabled httpd && systemctl is-active httpd || exit 1
+      else
+        # En otros servidores, httpd debe estar inactivo
+        ! systemctl is-enabled httpd && ! systemctl is-active httpd || exit 1
+      fi
+    exit-status: 0
+
+  # Verificación de sendmail (solo debe estar activo en servidores EG/TG)
+  "check-sendmail-status":
+    exec: |
+      if hostname | grep -qE '(EG|TG)'; then
+        # En servidores EG/TG, sendmail debe estar activo
+        systemctl is-enabled sendmail && systemctl is-active sendmail || exit 1
+      else
+        # En otros servidores, sendmail debe estar inactivo
+        ! systemctl is-enabled sendmail && ! systemctl is-active sendmail || exit 1
+      fi
+    exit-status: 0
+
+# También podemos incluir verificaciones directas de servicios para mayor claridad
+service:
+  chronyd:
+    enabled: true
+    running: true
+  nfs-server:
+    enabled: true
+    running: true
+  autofs:
+    enabled: true
+    running: true
+  snmpd:
+    enabled: true
+    running: true

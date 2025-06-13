@@ -1,0 +1,18 @@
+# Validación del archivo /etc/selinux/config para comprobar que SELINUX esté configurado y que solo haya una ocurrencia
+
+file:
+  /etc/selinux/config:
+    exists: true
+    contains:
+      - "SELINUX=disabled"
+
+command:
+  unica_ocurrencia_selinux:
+    exec: |
+      parametro="SELINUX"
+      fichero="/etc/selinux/config"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}([[:space:]]*|[[:space:]]*=|=[[:space:]]*)" ${fichero})
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"

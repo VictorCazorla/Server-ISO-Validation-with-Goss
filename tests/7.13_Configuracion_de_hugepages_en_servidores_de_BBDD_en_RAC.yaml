@@ -1,0 +1,17 @@
+# Verificación de la configuración de vm.nr_hugepages en /etc/sysctl.conf
+file:
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - 'vm.nr_hugepages = 1024'
+
+command:
+  unica_ocurrencia_nr_hugepages:
+    exec: |
+      parametro="vm.nr_hugepages"
+      fichero="/etc/sysctl.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"

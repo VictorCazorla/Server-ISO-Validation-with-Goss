@@ -1,0 +1,6 @@
+file:
+   /etc/sysconfig/network:
+    exists: true
+    contains:
+    - "NOZEROCONF=yes"
+

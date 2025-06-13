@@ -1,0 +1,22 @@
+file:
+  /softw/app/core:
+    exists: true
+    mode: "0777"
+  /etc/systemd/system.conf:
+    exists: true
+    contains:
+      - "DefaultLimitCORE=infinity"
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - "kernel.core_uses_pid = 0"
+      - "fs.suid_dumpable = 2"
+      - "kernel.core_pattern = /softw/app/core/core.%e"
+
+kernel-param:
+  kernel.core_uses_pid:
+    value: "0"
+  fs.suid_dumpable:
+    value: "2"
+  kernel.core_pattern:
+    value: "/softw/app/core/core.%e"

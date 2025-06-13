@@ -1,0 +1,45 @@
+# Verificación del servicio systemd myloopback.service y su configuración
+file:
+  /etc/systemd/system/myloopback.service:
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
+    contents:
+      - '[Unit]'
+      - 'Description=My Loopback service'
+      - 'After=network.target'
+      - '[Service]'
+      - 'Type=oneshot'
+      - 'User=root'
+      - "ExecStart=/bin/bash -c '/usr/sbin/ip link set dev lo mtu 16384'"
+      - 'RemainAfterExit=yes'
+      - '[Install]'
+      - 'WantedBy=multi-user.target'
+
+command:
+  unica_ocurrencia_execstart:
+    exec: |
+      parametro="ExecStart"
+      fichero="/etc/systemd/system/myloopback.service"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  systemctl_myloopback_enabled:
+    exec: systemctl is-enabled myloopback.service
+    exit-status: 0
+    stdout:
+      - "enabled"
+
+  systemctl_myloopback_active:
+    exec: systemctl is-active myloopback.service
+    exit-status: 0
+    stdout:
+      - "active"
+
+  verify_lo_mtu:
+    exec: "ip link show dev lo | grep -E 'mtu 16384'"
+    exit-status: 0

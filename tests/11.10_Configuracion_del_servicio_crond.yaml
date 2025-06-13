@@ -1,0 +1,14 @@
+command:
+    grep "CRONDARGS='-m off'" /etc/sysconfig/crond:
+        exit-status: 0
+        stdout:
+            - CRONDARGS='-m off'
+        stderr: ""
+        timeout: 10000
+    grep 'MAILTO=""' /etc/crontab:
+        exit-status: 0
+        stdout:
+            - MAILTO=""
+        stderr: ""
+        timeout: 10000
+   

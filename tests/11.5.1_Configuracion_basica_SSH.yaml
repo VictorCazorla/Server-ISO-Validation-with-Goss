@@ -1,0 +1,26 @@
+file:
+  /etc/ssh/sshd_config:
+    exists: true
+    contents:
+      - 'PermitRootLogin yes'
+      - 'IgnoreRhosts yes'
+      - 'IgnoreUserKnownHosts yes'
+      - 'AllowTcpForwarding yes'
+      - 'PasswordAuthentication yes'
+      - 'X11Forwarding yes'
+      - 'HostbasedAuthentication yes'
+      - 'PubkeyAuthentication yes'
+      - 'UseDNS yes'
+      - '#AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES'
+      - '#AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT'
+      - '#AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE'
+  /etc/ssh/ssh_config:
+    exists: true
+    contents:
+      - 'HostbasedAuthentication yes'
+      - 'PubkeyAuthentication yes'
+      - 'EnableSSHKeysign yes'
+service:
+  sshd:
+    enabled: true
+    running: true

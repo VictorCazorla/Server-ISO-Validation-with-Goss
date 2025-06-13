@@ -1,0 +1,14 @@
+command:
+  perfilperformance_tuned:
+    exec: "tuned-adm active | grep 'throughput-performance' | wc -l"
+    # Ejecutamos el comando 'tuned-adm active' para obtener el perfil activo en el sistema.
+    # Luego usamos 'grep' para comprobar si el perfil actual contiene la cadena 'throughput-performance'.
+    # Finalmente, 'wc -l' cuenta si esa línea existe. Si existe, devuelve 1 (significa que el perfil es correcto).
+
+    exit-status: 0
+    # El test solo pasa si el comando anterior se ejecuta correctamente (sin errores de ejecución).
+
+    stdout:
+      - "1"
+      # Validamos que la salida sea exactamente "1", lo que indica que el perfil 'throughput-performance' está activado.
+      # Si el perfil es otro, el resultado será 0 y el test fallará.

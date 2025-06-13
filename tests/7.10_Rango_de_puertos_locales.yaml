@@ -1,0 +1,13 @@
+file:
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - "net.ipv4.ip_local_port_range = 45000 65535"
+
+command:
+  contador_de_net.ipv4.ip_local_port_range:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.ip_local_port_range([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"

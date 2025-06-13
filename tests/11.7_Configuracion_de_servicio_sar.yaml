@@ -1,0 +1,5 @@
+command:
+  "grep 'Description=Run system activity accounting tool every 5 minutes' /etc/systemd/system/sysstat.service.wants/sysstat-collect.timer":
+    exit-status: 0
+  "grep 'OnCalendar=\\*:00/5' /etc/systemd/system/sysstat.service.wants/sysstat-collect.timer":
+    exit-status: 0

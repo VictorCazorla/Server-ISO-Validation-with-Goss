@@ -1,0 +1,25 @@
+command:
+    grep '\*.info;mail.none;authpriv.none;cron.none;local0.none' /etc/rsyslog.conf:
+        exit-status: 0
+        stdout:
+            - '*.info;mail.none;authpriv.none;cron.none;local0.none                /var/log/messages'
+        stderr: ""
+        timeout: 10000
+    grep 'OPTIONS="-Ls 0 -p /var/run/snmpd.pid -a"' /etc/sysconfig/snmpd:
+        exit-status: 0
+        stdout:
+            - OPTIONS="-Ls 0 -p /var/run/snmpd.pid -a"
+        stderr: ""
+        timeout: 10000
+    grep 'local0.info /var/log/snmpd.log' /etc/rsyslog.conf:
+        exit-status: 0
+        stdout:
+            - local0.info /var/log/snmpd.log
+        stderr: ""
+        timeout: 10000
+    grep 'var/log/snmpd.log' /etc/logrotate.d/syslog:
+        exit-status: 0
+        stdout:
+            - /var/log/snmpd.log
+        stderr: ""
+        timeout: 10000

@@ -1,0 +1,17 @@
+# Verificación de la configuración kernel.numa_balancing en /etc/sysctl.conf
+file:
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - 'kernel.numa_balancing = 0'
+
+command:
+  unica_ocurrencia_kernel_numa_balancing:
+    exec: |
+      parametro="kernel.numa_balancing"
+      fichero="/etc/sysctl.conf"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"

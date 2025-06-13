@@ -1,0 +1,4 @@
+command:
+  comprobar_puertos_en_su_seccion:
+    exec: ./11.6.1_Configuracion_de_puertos_de_NFS.sh  # corregir ruta en caso de cambiar el script de directorio
+    exit-status: 0

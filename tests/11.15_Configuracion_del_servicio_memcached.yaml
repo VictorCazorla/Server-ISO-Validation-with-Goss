@@ -1,0 +1,44 @@
+# Verificación de configuración de memcached: existencia de archivos, parámetros y servicio activo
+file:
+  /usr/lib/systemd/system/memcached.service:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+    contents:
+      - "^After=network.target network-online.target"
+      - "^Wants=network-online.target"
+      - "^Type=simple"
+      - "^User=memcached"
+      - "^EnvironmentFile=-/etc/sysconfig/memcached"
+      - "^ExecStart=/usr/bin/memcached"
+
+  /etc/sysconfig/memcached:
+    exists: true
+    owner: root
+    group: root
+    mode: "0640"
+    contents:
+      - '^OPTIONS="-l 127\.0\.0\.1"'
+
+command:
+  unica_ocurrencia_memcached_options:
+    exec: |
+      parametro="OPTIONS"
+      fichero="/etc/sysconfig/memcached"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}[[:space:]]*=" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  verify_memcached_listening:
+    exec: "ss -tuln | grep -Ec ':11211[[:space:]]+127\\.0\\.0\\.1:'"
+    exit-status: 0
+    stdout:
+      - "1"
+
+service:
+  memcached:
+    enabled: true
+    running: true

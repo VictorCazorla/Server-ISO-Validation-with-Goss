@@ -1,0 +1,23 @@
+command:
+  escaneo_automatico_de_sistema_de_ficheros:
+    exec: |
+      resultado=0
+      for dev in $(egrep -v "\#|^$|none|[[:space:]]/[[:space:]]|[[:space:]]/var[[:space:]]|[[:space:]]/boot[[:space:]]|[[:space:]]/boot/efi[[:space:]]" /etc/fstab | awk '{print $1}'); do
+        if tune2fs -l "$dev" 2>/dev/null | grep -q "Filesystem features"; then
+          mount_count=$(tune2fs -l "$dev" | grep -Eo 'Mount count:\s*[0-9]+' | awk '{print $3}')
+          check_interval=$(tune2fs -l "$dev" | grep -Eo 'Check interval:\s*[0-9]+' | awk '{print $3}')
+          if [ "$mount_count" -ne 0 ] || [ "$check_interval" -ne 0 ]; then
+            resultado=1
+          fi
+        fi
+      done
+
+      if [ "$resultado" -eq 0 ]; then
+        echo "OK"
+        exit 0
+      else
+        exit 1
+      fi
+    exit-status: 0
+    stdout:
+      - "OK"

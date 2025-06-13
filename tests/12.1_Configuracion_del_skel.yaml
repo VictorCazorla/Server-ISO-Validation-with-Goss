@@ -1,0 +1,63 @@
+file:
+  /etc/skel/.bash_profile:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+    contents:
+      - '^\.[[:space:]]+~/\.profile$'
+    contains:
+      - ". ~/.profile"
+
+  /etc/skel/.bash_logout:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+
+  /etc/skel/.bashrc:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+
+  /etc/skel/.mkshrc:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+
+  /etc/skel/.zshrc:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+
+command:
+  skel_files_count:
+    exec: "find /etc/skel -maxdepth 1 -type f | wc -l"
+    exit-status: 0
+    stdout:
+      - "5"
+
+  skel_only_hidden:
+    exec: "find /etc/skel -maxdepth 1 -type f -name '[!.]*' | wc -l"
+    exit-status: 0
+    stdout:
+      - "0"
+
+  verify_bash_profile:
+    exec: "grep -Ec '^.[[:space:]]+~/.profile$' /etc/skel/.bash_profile"
+    exit-status: 0
+    stdout:
+      - "1"
+
+  unica_ocurrencia_bash_profile:
+    exec: |
+      parametro=". ~/.profile"
+      fichero="/etc/skel/.bash_profile"
+      ocurrencias=$(egrep -c "^[[:space:]]*${parametro}[[:space:]]*$" "$fichero")
+      echo "$ocurrencias"
+    exit-status: 0
+    stdout:
+      - "1"

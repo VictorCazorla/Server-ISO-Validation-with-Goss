@@ -1,0 +1,147 @@
+file:
+  /etc/sysctl.conf:
+    exists: true
+    contains:
+      - "net.ipv4.conf.all.accept_redirects = 0"
+      - "net.ipv4.conf.all.accept_source_route = 0"
+      - "net.ipv4.conf.all.send_redirects = 0"
+      - "net.ipv4.tcp_fin_timeout = 30"
+      - "net.ipv4.tcp_keepalive_intvl = 15"
+      - "net.ipv4.tcp_keepalive_probes = 5"
+      - "net.ipv4.tcp_keepalive_time = 300"
+      - "net.ipv4.tcp_retries2 = 15"
+      - "net.ipv4.tcp_timestamps = 0"
+      - "net.ipv4.tcp_syncookies = 1"
+      - "net.ipv4.tcp_syn_retries = 20"
+      - "net.ipv4.tcp_synack_retries = 20"
+      - "net.ipv4.tcp_sack = 0"
+      - "net.ipv4.tcp_max_syn_backlog = 8192"
+      - "net.ipv4.route.flush = 1"
+      - "net.core.rmem_default = 262144"
+      - "net.core.wmem_default = 262144"
+      - "net.core.rmem_max = 4194304"
+      - "net.core.wmem_max = 1048576"
+      - "net.core.netdev_max_backlog = 20000"
+      - "net.core.somaxconn = 20000"
+
+command:
+  contador_de_net.ipv4.conf.all.accept_redirects:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.conf.all.accept_redirects([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.conf.all.accept_source_route:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.conf.all.accept_source_route([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.conf.all.send_redirects:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.conf.all.send_redirects([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_fin_timeout:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_fin_timeout([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"      
+  contador_de_net.ipv4.tcp_keepalive_intvl:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_keepalive_intvl([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_keepalive_probes:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_keepalive_probes([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_retries2:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_retries2([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_timestamps:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_timestamps([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_syncookies:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_syncookies([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_syn_retries:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_syn_retries([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_synack_retries:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_synack_retries([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_sack:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_sack([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.tcp_max_syn_backlog:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.tcp_max_syn_backlog([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.ipv4.route.flush:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.ipv4.route.flush([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.core.rmem_default:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.core.rmem_default([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.core.wmem_default:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.core.wmem_default([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.core.rmem_max:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.core.rmem_max([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.core.wmem_max:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.core.wmem_max([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.core.netdev_max_backlog:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.core.netdev_max_backlog([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"
+  contador_de_net.core.somaxconn:
+    exec: >
+      bash -c "egrep '^[[:space:]]*net.core.somaxconn([[:space:]]*=[[:space:]]*|[[:space:]])' /etc/sysctl.conf | grep -v '^[[:space:]]*#' | wc -l"
+    exit-status: 0
+    stdout:
+      - "1"

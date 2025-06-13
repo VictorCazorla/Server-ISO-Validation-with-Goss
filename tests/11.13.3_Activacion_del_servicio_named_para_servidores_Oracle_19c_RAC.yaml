@@ -1,0 +1,6 @@
+# Verificación del servicio named: que esté habilitado y en ejecución
+
+service:
+  named:
+    enabled: true
+    running: true
